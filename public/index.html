@@ -1,0 +1,18 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GameVault | Entrar</title><link rel="stylesheet" href="style.css"></head><body><div class="land">
+<h1>🎮 GameVault</h1><p>Jogos de PlayStation, Xbox e PC</p>
+<section class="panel" style="max-width:380px;width:100%"><h2 id="tt">Entrar</h2>
+<input id="cn" placeholder="Seu nome" hidden><input id="ce" type="email" placeholder="E-mail"><input id="cs" type="password" placeholder="Senha">
+<button class="go" id="go">Entrar</button><a href="#" id="tg">Não tem conta? Criar conta de cliente</a><a href="/loja.html">Continuar como visitante →</a><p class="err" id="err"></p></section></div>
+<script>
+const $=s=>document.querySelector(s);let cad=false;
+$('#tg').onclick=e=>{e.preventDefault();cad=!cad;$('#cn').hidden=!cad;$('#tt').textContent=cad?'Criar conta':'Entrar';$('#go').textContent=cad?'Criar conta':'Entrar';$('#tg').textContent=cad?'Já tenho conta: entrar':'Não tem conta? Criar conta de cliente';$('#err').textContent=''};
+async function enviar(){
+ const body=cad?{nome:$('#cn').value,email:$('#ce').value,senha:$('#cs').value}:{email:$('#ce').value,senha:$('#cs').value};
+ const r=await fetch(cad?'/api/clientes/registro':'/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+ const d=await r.json();if(!r.ok)return $('#err').textContent=d.erro;
+ if(d.tipo==='admin'){sessionStorage.token=d.token;location='/admin.html';}
+ else{localStorage.ctoken=d.token;localStorage.cnome=d.nome;location='/loja.html';}
+}
+$('#go').onclick=enviar;document.addEventListener('keydown',e=>{if(e.key==='Enter')enviar()});
+</script></body></html>
