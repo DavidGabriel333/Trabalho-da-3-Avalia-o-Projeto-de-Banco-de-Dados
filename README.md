@@ -2,7 +2,7 @@
 
 Projeto da **3ª Avaliação de Banco de Dados**: e-commerce de jogos com **banco de dados poliglota**, em que cada tecnologia atende ao caso de uso em que é mais adequada.
 
-**Autor:** _(seu nome)_ · **Disciplina:** Banco de Dados · **Entrega:** 26/11/2026
+Segue o link de aprensetação: https://drive.google.com/file/d/1G8ubM5jYM8EngaPl_0i1BCfCuTLF2hUj/view?usp=sharing 
 
 ## 1. Arquitetura de dados
 
@@ -96,5 +96,3 @@ npm start       # http://localhost:3000
 - O preço e o total do pedido são calculados no servidor, nunca confiados ao navegador.
 - Segredos ficam em variáveis de ambiente (`.env` fora do Git).
 
-## 9. Capturas de tela
-_(adicione aqui prints do login, do painel admin, da loja, do carrinho e dos bancos, cobrindo senhas, URLs e chaves)_
